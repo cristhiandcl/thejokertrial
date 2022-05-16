@@ -13,19 +13,19 @@ function PaymentResponse() {
 
   const headers = ["Item", "Units", "Unit price", "Total per item"];
 
-  console.log(search);
+  console.log(items);
 
   const itemsBought = data[0]
     .replace("Items => [ ", "")
     .replace(" ]", "")
     .split(",");
-
+  console.log(itemsBought);
   const amountSelected = data[1]
     .replace("Amount => [ ", "")
     .replace(" ]", "")
     .replace(/\s/g, "")
     .split(",");
-
+  console.log(amountSelected);
   const unitPrice = data[2]
     .replace("Unit price => [ ", "")
     .replace(" ]", "")
@@ -40,16 +40,16 @@ function PaymentResponse() {
 
   const cartReport = itemsBought.map((_, index) => (
     <div className="flex justify-between">
-      <p className="min-w-[180px]">{itemsBought[index]}</p>
-      <p className="">{amountSelected[index]}</p>
-      <p className="min-w-[140px]">
+      <p className="min-w-[320px]">{itemsBought[index]}</p>
+      <p className="min-w-[80px] text-center">{amountSelected[index]}</p>
+      <p className="min-w-[200px] text-right hidden lg:block">
         {parseInt(unitPrice[index]).toLocaleString("es-CO", {
           style: "currency",
           currency: "COP",
           currencyDisplay: "code",
         })}
       </p>
-      <p className="min-w-[140px]">
+      <p className="min-w-[200px] text-right hidden sm:block">
         {parseInt(totalPerItem[index]).toLocaleString("es-CO", {
           style: "currency",
           currency: "COP",
@@ -61,7 +61,7 @@ function PaymentResponse() {
 
   const transactionReport =
     transactionState === "APPROVED" ? (
-      <div className="flex flex-col max-w-2xl mx-auto h-[480px] justify-center">
+      <div className="flex flex-col max-w-md lg:max-w-4xl sm:max-w-2xl mx-auto h-[480px] justify-center">
         <h1 className="text-center title-projects2 font-bold">
           The transaction was successful
         </h1>
@@ -70,9 +70,11 @@ function PaymentResponse() {
           <div className="flex justify-between mb-4">
             {headers.map((head, index) => (
               <p
-                className={`${index === 0 && "min-w-[140px]"} ${
-                  index === 2 && "min-w-[140px] text-right"
-                } title-projects3`}
+                className={`${index === 0 && "min-w-[320px]"} ${
+                  index === 3 && "min-w-[200px] text-right hidden sm:block"
+                } ${
+                  index === 2 && "min-w-[200px] text-right hidden lg:block"
+                } ${index === 1 && "min-w-[80px] text-center"} title-projects3`}
               >
                 {head}
               </p>

@@ -294,7 +294,6 @@ span + span {
   -webkit-text-fill-color: transparent;
   animation: textclip 4s linear infinite;
   animation-direction: reverse;
-  display: inline-block;
   font-size: 19px;
 }
 
